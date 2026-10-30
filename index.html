@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <meta
+    name="description"
+    content="Explore your daily habits with a machine-learning wellbeing score."
+  />
+
+  <title>MindScope | Digital Wellbeing</title>
+
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <div class="ambient ambient-one" aria-hidden="true"></div>
+  <div class="ambient ambient-two" aria-hidden="true"></div>
+
+  <header class="site-header">
+    <div class="header-inner">
+      <a class="brand" href="./" aria-label="MindScope home">
+        <span class="brand-mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none">
+            <path
+              d="M5 17h5l3-9 6 17 3-8h5"
+              stroke="currentColor"
+              stroke-width="2.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            />
+          </svg>
+        </span>
+
+        <span>Mind<span class="brand-accent">Scope</span></span>
+      </a>
+
+      <span class="header-tag">
+        <span class="status-dot" aria-hidden="true"></span>
+        ML-powered insights
+      </span>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="page-title">
+      <div class="eyebrow">
+        DIGITAL HABITS · PERSONAL INSIGHTS
+      </div>
+
+      <h1 class="title" id="page-title">
+        Your habits.<br />
+        <span>A new perspective.</span>
+      </h1>
+
+      <p class="subtitle">
+        Take a closer look at your screen time, daily routine, and
+        wellbeing through a personalized model prediction.
+      </p>
+
+      <div class="hero-tags" aria-label="Assessment overview">
+        <span>01 / Share your routine</span>
+        <span>02 / Explore your score</span>
+      </div>
+    </section>
+
+    <div class="layout">
+      <section class="panel form-panel" aria-labelledby="form-title">
+        <div class="panel-heading">
+          <div>
+            <p class="section-kicker">YOUR DAILY SNAPSHOT</p>
+            <h2 id="form-title">Let’s start with you</h2>
+          </div>
+
+          <span class="panel-badge">Assessment</span>
+        </div>
+
+        <form id="predict-form" novalidate>
+          <fieldset class="group">
+            <legend>
+              <span class="legend-index">01</span>
+              About you
+            </legend>
+
+            <div class="grid grid-3">
+              <div class="field">
+                <label for="age">Age</label>
+                <input
+                  type="number"
+                  id="age"
+                  name="age"
+                  placeholder="e.g. 21"
+                  min="10"
+                  max="100"
+                  step="1"
+                  required
+                  aria-describedby="age-error"
+                />
+                <span class="error-msg" id="age-error"></span>
+              </div>
+
+              <div class="field">
+                <label for="gender">Gender</label>
+                <select
+                  id="gender"
+                  name="gender"
+                  required
+                  aria-describedby="gender-error"
+                >
+                  <option value="" disabled selected>Select gender</option>
+                  <option value="Male">Male</option>
+                  <option value="Female">Female</option>
+                  
+                </select>
+                <span class="error-msg" id="gender-error"></span>
+              </div>
+
+              
+            <div class="field">
+  <label for="country">Country</label>
+
+  <select
+    id="country"
+    name="country"
+    required
+    aria-describedby="country-error"
+  >
+    <option value="" disabled selected>Select country</option>
+    <option value="India">India</option>
+    <option value="USA">USA</option>
+    <option value="Canada">Canada</option>
+    <option value="Australia">Australia</option>
+    <option value="UK">UK</option>
+    <option value="Germany">Germany</option>
+    <option value="Mexico">Mexico</option>
+    <option value="Turkey">Turkey</option>
+    <option value="France">France</option>
+    <option value="Other">Other</option>
+  </select>
+
+  <span class="error-msg" id="country-error"></span>
+</div>
+
+              <div class="field field-span">
+                <label for="academic_level">Academic level</label>
+                <select
+                  id="academic_level"
+                  name="academic_level"
+                  required
+                  aria-describedby="academic-error"
+                >
+                  <option value="" disabled selected>
+                    Select your academic level
+                  </option>
+                  <option value="High School">High School</option>
+                  <option value="Undergraduate">Undergraduate</option>
+                  <option value="Graduate">Graduate</option>
+                </select>
+                <span class="error-msg" id="academic-error"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="group">
+            <legend>
+              <span class="legend-index">02</span>
+              Your digital world
+            </legend>
+
+            <div class="grid grid-2">
+              <div class="field">
+                <label for="most_used_platform">Most-used platform</label>
+                <select
+                  id="most_used_platform"
+                  name="most_used_platform"
+                  required
+                  aria-describedby="platform-error"
+                >
+                  <option value="" disabled selected>Select platform</option>
+                  <option value="Instagram">Instagram</option>
+                  <option value="YouTube">YouTube</option>
+                  <option value="WhatsApp">WhatsApp</option>
+                  <option value="Facebook">Facebook</option>
+                  <option value="TikTok">TikTok</option>
+                  <option value="Twitter">Twitter</option>
+                  <option value="Snapchat">Snapchat</option>
+                  <option value="LinkedIn">LinkedIn</option>
+                  <option value="Other">Other</option>
+                </select>
+                <span class="error-msg" id="platform-error"></span>
+              </div>
+
+              <div class="field">
+                <label for="purpose_of_use">Main purpose</label>
+                <select
+                  id="purpose_of_use"
+                  name="purpose_of_use"
+                  required
+                  aria-describedby="purpose-error"
+                >
+                  <option value="" disabled selected>Select purpose</option>
+                  <option value="Entertainment">Entertainment</option>
+                  <option value="Education">Education</option>
+                  <option value="Networking">Networking</option>
+                  <option value="News">News</option>
+                  
+                </select>
+                <span class="error-msg" id="purpose-error"></span>
+              </div>
+
+              <div class="field">
+                <label for="avg_daily_usage_hours">Daily screen time</label>
+                <div class="unit-input">
+                  <input
+                    type="number"
+                    id="avg_daily_usage_hours"
+                    name="avg_daily_usage_hours"
+                    placeholder="e.g. 4.5"
+                    min="0"
+                    max="24"
+                    step="0.1"
+                    required
+                    aria-describedby="usage-error"
+                  />
+                  <span class="unit">hrs</span>
+                </div>
+                <span class="error-msg" id="usage-error"></span>
+              </div>
+
+              <div class="field">
+                <label for="daily_unlocks">Daily phone unlocks</label>
+                <div class="unit-input">
+                  <input
+                    type="number"
+                    id="daily_unlocks"
+                    name="daily_unlocks"
+                    placeholder="e.g. 60"
+                    min="0"
+                    step="1"
+                    required
+                    aria-describedby="unlocks-error"
+                  />
+                  <span class="unit">/ day</span>
+                </div>
+                <span class="error-msg" id="unlocks-error"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <fieldset class="group">
+            <legend>
+              <span class="legend-index">03</span>
+              Life beyond the screen
+            </legend>
+
+            <div class="grid grid-3">
+              <div class="field">
+                <label for="study_hours">Study time</label>
+                <div class="unit-input">
+                  <input
+                    type="number"
+                    id="study_hours"
+                    name="study_hours"
+                    placeholder="e.g. 4"
+                    min="0"
+                    max="24"
+                    step="0.1"
+                    required
+                    aria-describedby="study-hint study-error"
+                  />
+                  <span class="unit">hrs</span>
+                </div>
+                <span class="hint" id="study-hint">Per day</span>
+                <span class="error-msg" id="study-error"></span>
+              </div>
+
+              <div class="field">
+                <label for="physical_activity_hours">Physical activity</label>
+                <div class="unit-input">
+                  <input
+                    type="number"
+                    id="physical_activity_hours"
+                    name="physical_activity_hours"
+                    placeholder="e.g. 1"
+                    min="0"
+                    max="24"
+                    step="0.1"
+                    required
+                    aria-describedby="activity-hint activity-error"
+                  />
+                  <span class="unit">hrs</span>
+                </div>
+                <span class="hint" id="activity-hint">Per day</span>
+                <span class="error-msg" id="activity-error"></span>
+              </div>
+
+              <div class="field">
+                <label for="sleep_hours_per_night">Sleep duration</label>
+                <div class="unit-input">
+                  <input
+                    type="number"
+                    id="sleep_hours_per_night"
+                    name="sleep_hours_per_night"
+                    placeholder="e.g. 7.5"
+                    min="0"
+                    max="24"
+                    step="0.1"
+                    required
+                    aria-describedby="sleep-hint sleep-error"
+                  />
+                  <span class="unit">hrs</span>
+                </div>
+                <span class="hint" id="sleep-hint">Per night</span>
+                <span class="error-msg" id="sleep-error"></span>
+              </div>
+
+              <div class="field field-span">
+                <label id="stress-label">How stressed do you feel?</label>
+
+                <input
+                  type="hidden"
+                  id="stress_level"
+                  name="stress_level"
+                  value=""
+                />
+
+                <div
+                  class="segmented"
+                  id="stress_level_group"
+                  role="group"
+                  aria-labelledby="stress-label"
+                  aria-describedby="stress-error"
+                >
+                  <button type="button" class="seg-btn" data-value="Low">
+                    Low
+                  </button>
+                  <button type="button" class="seg-btn" data-value="Medium">
+                    Medium
+                  </button>
+                  <button type="button" class="seg-btn" data-value="High">
+                    High
+                  </button>
+                  <button type="button" class="seg-btn" data-value="Very High">
+                    Very high
+                  </button>
+                </div>
+
+                <span class="error-msg" id="stress-error"></span>
+              </div>
+            </div>
+          </fieldset>
+
+          <div class="form-footer">
+            <p class="api-note">
+              A moment of reflection.<br />
+              A different view of your routine.
+            </p>
+
+            <button type="submit" class="submit-btn" id="submit-btn">
+              <span class="btn-label">Explore my score</span>
+              <span class="btn-spinner" aria-hidden="true"></span>
+
+              <svg
+                class="button-arrow"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <path
+                  d="M5 12h14m-6-6 6 6-6 6"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </form>
+      </section>
+
+      <aside class="insights-column">
+        <section
+          class="panel result-panel"
+          aria-labelledby="result-title"
+          aria-live="polite"
+          aria-atomic="true"
+        >
+          <div class="result-topbar">
+            <span class="section-kicker" id="result-title">YOUR INSIGHT</span>
+            <span class="result-chip">MODEL OUTPUT</span>
+          </div>
+
+          <div class="result-inner">
+            <div class="state state-idle" id="state-idle">
+              <div class="orbit-visual" aria-hidden="true">
+                <div class="orbit orbit-outer"></div>
+                <div class="orbit orbit-middle"></div>
+                <div class="orbit orbit-inner"></div>
+
+                <div class="orbit-core">
+                  <svg viewBox="0 0 48 48" fill="none">
+                    <path
+                      d="M8 25h9l5-13 8 24 5-11h5"
+                      stroke="currentColor"
+                      stroke-width="3"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    />
+                  </svg>
+                </div>
+
+                <span class="orbit-dot orbit-dot-one"></span>
+                <span class="orbit-dot orbit-dot-two"></span>
+              </div>
+
+              <p class="idle-label">A little clarity awaits.</p>
+              <p class="idle-copy">
+                Complete your daily snapshot to reveal your predicted
+                wellbeing score.
+              </p>
+
+              <div class="idle-scale" aria-hidden="true">
+                <span>0</span>
+                <div class="scale-track"></div>
+                <span>10</span>
+              </div>
+            </div>
+
+            <div class="state state-loading" id="state-loading" hidden>
+              <div class="pulse-ring" aria-hidden="true"></div>
+              <p class="loading-label">Connecting the dots</p>
+              <p class="loading-copy">
+                Your prediction is on its way…
+              </p>
+            </div>
+
+            <div class="state state-result" id="state-result" hidden>
+              <p class="result-caption">Your predicted score</p>
+
+              <svg
+                class="gauge"
+                viewBox="0 0 240 160"
+                aria-hidden="true"
+              >
+                <defs>
+                  <linearGradient
+                    id="gaugeGradient"
+                    x1="20"
+                    y1="140"
+                    x2="220"
+                    y2="140"
+                    gradientUnits="userSpaceOnUse"
+                  >
+                    <stop offset="0%" stop-color="#a78bfa" />
+                    <stop offset="50%" stop-color="#818cf8" />
+                    <stop offset="100%" stop-color="#22d3ee" />
+                  </linearGradient>
+                </defs>
+
+                <path
+                  class="gauge-track"
+                  d="M20 140 A100 100 0 0 1 220 140"
+                />
+
+                <path
+                  class="gauge-fill"
+                  id="gauge-fill"
+                  d="M20 140 A100 100 0 0 1 220 140"
+                />
+
+                <g class="gauge-ticks"></g>
+              </svg>
+
+              <div class="score-readout">
+                <span class="score-number" id="score-number">0.00</span>
+                <span class="score-max">/ 10</span>
+              </div>
+
+              <p class="score-band" id="score-band"></p>
+              <p class="score-context" id="score-context"></p>
+
+              <button type="button" class="reset-btn" id="reset-btn">
+                Back to snapshot
+              </button>
+            </div>
+
+            <div class="state state-error" id="state-error" hidden>
+              <div class="error-icon" aria-hidden="true">!</div>
+              <p class="error-label" id="error-label">
+                Something went wrong
+              </p>
+              <p class="error-copy" id="error-copy">
+                Please review your details and try again.
+              </p>
+
+              <button
+                type="button"
+                class="reset-btn"
+                id="error-retry-btn"
+              >
+                Back to form
+              </button>
+            </div>
+          </div>
+
+          <div class="result-bottom">
+            <span class="mini-dot" aria-hidden="true"></span>
+            A snapshot, not a definition of you
+          </div>
+        </section>
+
+        <section class="info-card" aria-labelledby="note-title">
+          <div class="info-icon" aria-hidden="true">i</div>
+
+          <div>
+            <h2 id="note-title">Keep the bigger picture in mind</h2>
+            <p>
+              This project provides a model-generated estimate, not a
+              clinical assessment or medical diagnosis.
+            </p>
+          </div>
+        </section>
+
+        <div class="side-caption">
+          <span class="caption-line"></span>
+          MORE AWARENESS. LESS AUTOPILOT.
+        </div>
+      </aside>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <p>MindScope <span aria-hidden="true">/</span> Digital wellbeing, reimagined.</p>
+    <p>An ML project for exploration and learning.</p>
+  </footer>
+</body>
+</html>
